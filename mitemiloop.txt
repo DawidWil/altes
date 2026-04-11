@@ -1,0 +1,102 @@
+-------- PĘTLA 2 + -------- 
+.include "m32def.inc"
+
+START:
+    ldi r16, 0xFF ;INIT I/O
+    out DDRA, r16
+
+    ldi r16, 0x33 ;PORTA - 0x33
+    out PORTA, r16
+
+    ldi r21, 0
+
+OUTER_LOOP:
+    inc r21 ;R21++
+
+    ldi r20, 0 ;R20 = 0
+
+INNER_LOOP:
+    inc r20 ;R20++
+    nop ;NOP
+
+    cpi r20, 0xFF ;R20 == 255 ?
+    brne INNER_LOOP
+
+    cpi r21, 0xFF ;R21 == 255 ?
+    brne OUTER_LOOP
+
+    ldi r16, 0x0A ;PORTA = 0x0A
+    out PORTA, r16
+
+STOP:
+    rjmp STOP
+
+-------- PĘTLA 2 - -------- 
+.include "m32def.inc"
+
+START:
+    ldi r16, 0xFF ;INIT I/O
+    out DDRA, r16
+
+    ldi r16, 0x33 ;PORTA - 0x33
+    out PORTA, r16
+
+    ldi r21, 255 ;R21 = 255
+
+OUTER_LOOP:
+    dec r21 ;R21--
+
+    ldi r20, 255 ;R20 = 255
+
+INNER_LOOP:
+    dec r20 ;R20--
+    nop ;NOP
+
+    cpi r20, 0xFF ;R20 == 0 ?
+    brne INNER_LOOP
+
+    cpi r21, 0xFF ;R21 == 0 ?
+    brne OUTER_LOOP
+
+    ldi r16, 0x0A ;PORTA = 0x0A
+    out PORTA, r16
+
+STOP:
+    rjmp STOP
+
+-------- PĘTLA 3 + -------- 
+START:
+    ldi r16, 0xFF ;INIT I/O
+    out DDRA, r16
+
+    ldi r16, 0x33 ;PORTA = 0x33
+    out PORTA, r16
+	
+    ldi r22, 0 ;R22 = 0
+
+LOOP_R22:
+    inc r22 ;R22+
+    ldi r21, 0 ;R21 = 0
+
+LOOP_R21:
+    inc r21
+    ldi r20, 0 ;R20 = 0
+
+LOOP_R20:
+    inc r20 ;R20+
+    nop ;NOP
+
+    cpi r20, 0xFF ;R20 == 255 ?
+    brne LOOP_R20
+
+    cpi r21, 0xFF ;R21 == 255 ?
+    brne LOOP_R21
+
+    cpi r22, 0xFF ;R22 == 255 ?
+    brne LOOP_R22
+
+    ldi r16, 0x0A ;PORTA = 0x0A
+    out PORTA, r16
+
+STOP:
+    rjmp STOP
